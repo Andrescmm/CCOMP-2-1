@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std ;
+
+void swap(int *a, int *b){
+    int copia=*a;
+    *a=*b;
+    *b=copia;
+}
+
+void coctailSort(int *p, int *q){
+    bool cambio= true;
+    while(cambio=true) {
+        cambio=false;
+        for (int *i = p; i < q-2;i++) {
+            if (*i >*(i + 1)) {
+                swap(*i, *(i +1));
+                cambio=true;
+            }
+        }
+        cambio = false;
+        if(cambio){
+            break;
+        }
+        cambio=false;
+        for (int *i = q-2; i > p; i--) {
+            if (*i > *(i +1)) {
+                swap(*i, *(i + 1));
+                cambio=true;
+            }
+        }
+        if(cambio==false) {
+            break;
+        }
+    }
+}
+void imprimirArray(int *ini, int *fin){
+    int *i;
+    for(i=ini;i<fin-1;i++){
+        cout<<*(i)<< ", ";
+    }
+    cout<<*(fin-1)<< endl;
+}
+
+
+int main(){
+    //int p[]={31,2,17,12,5};
+    int p[]={33,8,2,6,45,3,1,39,7,21,34,34,5,30,21,32,56,45,32,50,999,876,456,8756,578,543,123,321,654,456,987,789,78,56,39,77,55,95,12,34,56,78,111,89,65,43,9,7,65,11,99};
+    int size_= sizeof(p)/ sizeof(p[0]);
+    int *ini=&p[0];
+    int *fin=ini+size_;
+    imprimirArray(p,fin);
+    coctailSort(ini,fin);
+    imprimirArray(ini,fin);
+}
